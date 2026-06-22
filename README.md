@@ -5,12 +5,7 @@ A fully responsive, multi-page luxury travel booking web app built with pure **H
 ---
 
 ## 🌐 Live Demo
-
-🔗 [https://YOUR-USERNAME.github.io/travelgo](https://YOUR-USERNAME.github.io/travelgo)
-
-> Replace `YOUR-USERNAME` with your GitHub username after deployment.
-
----
+🔗 https://p-diwja.github.io/TravelGo
 
 ## 📁 Project Structure
 
