@@ -1,0 +1,119 @@
+/* ============================================================
+   TravelGo — Booking Page Styles
+   ============================================================ */
+
+/* ── Steps ────────────────────────────────────────────── */
+.steps-wrap { padding: 32px 40px; border-bottom: 1px solid var(--border); }
+.steps {
+  display: flex; align-items: center; justify-content: center; gap: 0;
+  max-width: 520px; margin: 0 auto;
+}
+.step { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; }
+.step-circle {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--border);
+  display: grid; place-items: center; font-size: 14px; font-weight: 700; color: var(--text-light);
+  border: 2px solid var(--border); transition: all .3s;
+}
+.step.completed .step-circle { background: var(--blue); border-color: var(--blue); color: white; }
+.step.active .step-circle { background: white; border-color: var(--blue); color: var(--blue); }
+.step span { font-size: 12px; font-weight: 600; color: var(--text-light); }
+.step.completed span, .step.active span { color: var(--blue); }
+.step-line { flex: 1; height: 2px; background: var(--border); margin: 0 4px; margin-bottom: 20px; }
+.step-line.completed { background: var(--blue); }
+
+/* ── Layout ───────────────────────────────────────────── */
+.booking-layout {
+  display: grid; grid-template-columns: 1fr 360px; gap: 40px;
+  max-width: 1100px; margin: 0 auto; padding: 40px 40px 80px;
+}
+
+/* ── Form Cards ───────────────────────────────────────── */
+.form-card { padding: 28px; margin-bottom: 20px; }
+.form-card-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 18px; font-weight: 700; margin-bottom: 24px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group:last-child { margin-bottom: 0; }
+
+/* ── Insurance ────────────────────────────────────────── */
+.insurance-options { display: flex; flex-direction: column; gap: 12px; }
+.ins-option {
+  display: flex; align-items: center; gap: 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  padding: 14px 16px; cursor: pointer; transition: all .2s;
+}
+.ins-option input { display: none; }
+.ins-option.selected { border-color: var(--blue); background: var(--blue-light); }
+.ins-radio {
+  width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+  display: grid; place-items: center; flex-shrink: 0; transition: all .2s;
+}
+.ins-option.selected .ins-radio { border-color: var(--blue); background: var(--blue); }
+.ins-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: transparent; transition: all .2s;
+}
+.ins-option.selected .ins-dot { background: white; }
+.ins-info { flex: 1; }
+.ins-info strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.ins-info span   { font-size: 12px; color: var(--text-mid); }
+.ins-price { font-size: 14px; font-weight: 700; color: var(--blue); white-space: nowrap; }
+
+/* ── Payment Methods ──────────────────────────────────── */
+.pay-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.pay-btn {
+  padding: 12px; border-radius: var(--radius-sm); font-size: 15px;
+  font-weight: 600; border: 1.5px solid var(--border); background: white;
+  cursor: pointer; transition: all .2s;
+}
+.pay-apple.active { background: #1C1C1E; color: white; border-color: #1C1C1E; }
+.pay-google:hover { border-color: var(--blue); }
+.or-divider {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 11px; color: var(--text-light); letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── Card Input ───────────────────────────────────────── */
+.card-input-wrap { position: relative; }
+.card-input-wrap .form-input { padding-right: 44px; }
+.card-input-wrap svg { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+
+/* ── Save Card ────────────────────────────────────────── */
+.save-card {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  font-size: 14px; color: var(--text-mid); margin-top: 16px;
+}
+.save-card input { display: none; }
+.custom-check {
+  width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--border);
+  background: var(--border); display: grid; place-items: center; flex-shrink: 0; transition: all .2s;
+}
+.save-card input:checked ~ .custom-check { background: var(--blue); border-color: var(--blue); }
+
+/* ── Summary Card ─────────────────────────────────────── */
+.summary-sidebar { position: sticky; top: 80px; align-self: start; }
+.summary-card { overflow: hidden; }
+.summary-img { width: 100%; height: 200px; object-fit: cover; }
+.summary-info { padding: 20px; }
+.sum-top { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.sum-top h3 { font-size: 17px; font-weight: 700; }
+.sum-top p  { font-size: 12px; color: var(--text-mid); margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+.sum-divider { height: 1px; background: var(--border); margin: 12px 0; }
+.sum-row { display: flex; justify-content: space-between; font-size: 13px;
+  color: var(--text-mid); margin-bottom: 8px; }
+.sum-row strong { font-weight: 600; color: var(--text); }
+.sum-total { display: flex; justify-content: space-between; align-items: center; }
+.sum-total strong { font-size: 15px; }
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .booking-layout { grid-template-columns: 1fr; }
+  .summary-sidebar { position: static; }
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .steps-wrap { padding: 20px; }
+}

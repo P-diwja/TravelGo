@@ -1,0 +1,131 @@
+/* ============================================================
+   TravelGo — Global Styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:        #1E3FD8;
+  --blue-dark:   #1530AA;
+  --blue-light:  #EEF1FD;
+  --blue-mid:    #4A6CF7;
+  --gold:        #F5A623;
+  --text:        #111827;
+  --text-mid:    #4B5563;
+  --text-light:  #9CA3AF;
+  --border:      #E5E7EB;
+  --bg:          #F9FAFB;
+  --white:       #FFFFFF;
+  --radius:      12px;
+  --radius-sm:   8px;
+  --shadow:      0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.12);
+  --font:        'Inter', sans-serif;
+  --serif:       'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.5; }
+img  { display: block; width: 100%; object-fit: cover; }
+a    { text-decoration: none; color: inherit; }
+ul   { list-style: none; }
+button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
+input, textarea, select { font-family: var(--font); }
+
+/* ── Navbar ─────────────────────────────────────────────── */
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 64px; background: var(--white);
+  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+}
+.nav-logo { font-size: 22px; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--text-mid); transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--blue); }
+.nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-icon { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid var(--border); background: var(--white); transition: background .2s; }
+.nav-icon:hover { background: var(--bg); }
+.nav-icon svg { width: 18px; height: 18px; stroke: var(--text-mid); }
+.nav-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; cursor: pointer;
+  border: 2px solid var(--blue); }
+.nav-search { display: flex; align-items: center; gap: 10px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 24px; padding: 8px 18px; flex: 1; max-width: 400px; }
+.nav-search input { background: none; border: none; outline: none; font-size: 14px;
+  color: var(--text); width: 100%; }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+  border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; transition: all .2s; }
+.btn-primary { background: var(--blue); color: var(--white); }
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(30,63,216,.3); }
+.btn-outline { background: var(--white); color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+.btn-ghost { background: none; color: var(--text-mid); }
+.btn-ghost:hover { color: var(--blue); }
+.btn-lg { padding: 14px 28px; font-size: 16px; border-radius: var(--radius); }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer { background: #F3F4F6; padding: 60px 40px 32px; margin-top: 80px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+.footer-brand p { font-size: 13px; color: var(--text-mid); margin-top: 12px; line-height: 1.6; max-width: 220px; }
+.footer h4 { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text); margin-bottom: 16px; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul li a { font-size: 14px; color: var(--text-mid); transition: color .2s; }
+.footer ul li a:hover { color: var(--blue); }
+.footer-newsletter input { width: 100%; padding: 10px 14px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 14px; outline: none; }
+.footer-newsletter input:focus { border-color: var(--blue); }
+.footer-newsletter .sub-btn { margin-top: 10px; background: var(--blue); color: white;
+  padding: 10px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; width: 100%; }
+.footer-bottom { text-align: center; font-size: 13px; color: var(--text-light);
+  margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+.footer-social { display: flex; gap: 12px; margin-top: 16px; }
+.footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+  display: grid; place-items: center; color: var(--text-mid); transition: all .2s; }
+.footer-social a:hover { background: var(--blue); color: white; border-color: var(--blue); }
+.footer-social svg { width: 16px; height: 16px; }
+
+/* ── Star rating ─────────────────────────────────────────── */
+.stars { color: var(--gold); font-size: 14px; }
+.rating-badge { display: inline-flex; align-items: center; gap: 4px;
+  font-size: 13px; font-weight: 600; color: var(--text); }
+
+/* ── Tags / Badges ───────────────────────────────────────── */
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-gold { background: #FEF3C7; color: #92400E; }
+.badge-green { background: #D1FAE5; color: #065F46; }
+
+/* ── Section helpers ─────────────────────────────────────── */
+.section { padding: 64px 40px; max-width: 1200px; margin: 0 auto; }
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+.section-title { font-size: 24px; font-weight: 700; }
+.section-sub { font-size: 14px; color: var(--text-mid); margin-top: 4px; }
+
+/* ── Form elements ───────────────────────────────────────── */
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 13px; font-weight: 500; color: var(--text-mid); }
+.form-input { padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; color: var(--text); background: var(--white); outline: none; transition: border .2s; }
+.form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,63,216,.1); }
+.form-input::placeholder { color: var(--text-light); }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section { padding: 40px 20px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}

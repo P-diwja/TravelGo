@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Villa Celeste — TravelGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #1E3FD8; --blue-dark: #1530AA; --blue-light: #EEF1FD;
+    --gold: #F5A623; --text: #111827; --text-mid: #4B5563; --text-light: #9CA3AF;
+    --border: #E5E7EB; --bg: #F9FAFB; --white: #FFFFFF;
+    --radius: 12px; --radius-sm: 8px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08); --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    --font: 'Inter', sans-serif; --serif: 'Playfair Display', serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.5; }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
+
+  /* NAVBAR */
+  .navbar { display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-size: 22px; font-weight: 800; color: var(--blue); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-mid); }
+  .nav-links a.active, .nav-links a:hover { color: var(--blue); }
+  .nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-icon { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--border); background: var(--white); }
+  .nav-icon svg { width: 18px; height: 18px; stroke: var(--text-mid); }
+  .nav-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue); display: block; }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
+
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; transition: all .2s; text-decoration: none; }
+  .btn-primary { background: var(--blue); color: white; }
+  .btn-primary:hover { background: var(--blue-dark); }
+  .btn-outline { background: white; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .btn-ghost { background: none; color: var(--text-mid); }
+  .btn-lg { padding: 14px 28px; font-size: 16px; border-radius: var(--radius); }
+  .btn-full { width: 100%; justify-content: center; }
+  .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-gold { background: #FEF3C7; color: #92400E; }
+  .stars { color: var(--gold); }
+  .rating-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; }
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .form-input { padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; color: var(--text); background: var(--white); outline: none; transition: border .2s; width: 100%; font-family: var(--font); }
+  .form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,63,216,.1); }
+
+  /* GALLERY */
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; height: 480px; gap: 6px; padding: 6px; background: var(--bg); }
+  .gallery-main { position: relative; overflow: hidden; border-radius: 10px 0 0 10px; background: var(--border); }
+  .gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; }
+  .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-cell { overflow: hidden; background: var(--border); }
+  .gallery-cell:first-child { border-radius: 0 10px 0 0; }
+  .gallery-more { position: relative; overflow: hidden; border-radius: 0 0 10px 0; background: var(--border); cursor: pointer; }
+  .gallery-more img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-more-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; color: white; font-size: 13px; font-weight: 600; }
+  .fav-btn { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: white; display: grid; place-items: center; box-shadow: var(--shadow); cursor: pointer; transition: all .2s; }
+  .fav-btn:hover { background: var(--blue); }
+  .fav-btn:hover svg { stroke: white; }
+
+  /* LAYOUT */
+  .property-layout { display: grid; grid-template-columns: 1fr 360px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 40px 40px 80px; }
+  .property-main { min-width: 0; }
+
+  /* HEADER */
+  .prop-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+  .prop-header h1 { font-family: var(--serif); font-size: 30px; font-weight: 700; }
+  .prop-meta { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-mid); margin-top: 6px; flex-wrap: wrap; }
+
+  /* FACTS */
+  .prop-facts { display: flex; gap: 24px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 24px; flex-wrap: wrap; }
+  .fact { display: flex; align-items: center; gap: 10px; }
+  .fact svg { stroke: var(--text-mid); flex-shrink: 0; }
+  .fact strong { display: block; font-size: 14px; font-weight: 600; }
+  .fact span { font-size: 12px; color: var(--text-light); }
+
+  /* SECTIONS */
+  .prop-section { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+  .prop-section:last-child { border-bottom: none; }
+  .prop-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+  .prop-desc p { font-size: 15px; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px; }
+
+  /* AMENITIES */
+  .amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .amenity { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid); }
+  .amenity svg { stroke: var(--text-mid); flex-shrink: 0; }
+
+  /* ITINERARY */
+  .itinerary { display: flex; flex-direction: column; gap: 20px; }
+  .itin-item { display: flex; gap: 16px; }
+  .itin-num { width: 32px; height: 32px; border-radius: 50%; background: var(--blue); color: white; font-size: 13px; font-weight: 700; display: grid; place-items: center; flex-shrink: 0; }
+  .itin-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .itin-item p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+  /* MAP */
+  .map-placeholder { height: 280px; background: linear-gradient(135deg, #d4c5a9, #c9b89a); border-radius: var(--radius); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .map-pin { display: flex; align-items: center; gap: 6px; background: white; padding: 8px 14px; border-radius: 24px; box-shadow: var(--shadow-lg); font-size: 13px; font-weight: 600; }
+  .map-tags { position: absolute; bottom: 16px; left: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .map-tag { background: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; box-shadow: var(--shadow); }
+
+  /* REVIEWS */
+  .review-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; }
+  .rev-bar-row { display: flex; align-items: center; gap: 12px; }
+  .rev-bar-row > span:first-child { font-size: 13px; color: var(--text-mid); min-width: 110px; }
+  .rev-bar-row > span:last-child { font-size: 13px; font-weight: 600; min-width: 28px; }
+  .bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--blue); border-radius: 2px; }
+  .review-card { margin-top: 24px; padding: 24px; }
+  .review-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .review-top img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+  .review-top strong { display: block; font-size: 14px; }
+  .review-top span { font-size: 12px; color: var(--text-light); }
+  .review-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 14px; font-style: italic; }
+  .review-img { width: 100px; height: 80px; object-fit: cover; border-radius: 8px; }
+
+  /* LOCAL EXPERIENCES */
+  .exp-local-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .exp-local img { height: 130px; object-fit: cover; width: 100%; }
+  .exp-local-info { padding: 12px; }
+  .exp-local-info strong { font-size: 13px; font-weight: 600; display: block; }
+  .exp-local-info p { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+  /* SIMILAR */
+  .similar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .similar-card { cursor: pointer; transition: box-shadow .2s, transform .2s; }
+  .similar-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .similar-card img { height: 130px; object-fit: cover; width: 100%; }
+  .similar-info { padding: 12px; }
+
+  /* BOOKING SIDEBAR */
+  .booking-sidebar { position: sticky; top: 80px; align-self: start; }
+  .booking-box { padding: 24px; }
+  .price-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .price-main { font-size: 26px; font-weight: 800; }
+  .price-main em { font-size: 16px; font-weight: 400; color: var(--text-light); font-style: normal; }
+  .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .date-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-mid); text-transform: uppercase; margin-bottom: 6px; }
+  .no-charge { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 10px; }
+  .price-breakdown { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; }
+  .pb-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--text-mid); margin-bottom: 10px; }
+  .pb-row a { color: var(--text-mid); text-decoration: underline; }
+  .pb-total { font-weight: 700; color: var(--text); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px; }
+  .luxury-badge { display: flex; align-items: center; gap: 8px; background: var(--blue-light); padding: 10px 14px; border-radius: var(--radius-sm); margin-top: 14px; font-size: 12px; color: var(--blue); font-weight: 500; }
+
+  /* FOOTER */
+  .footer { background: #F3F4F6; padding: 60px 40px 32px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+  .footer-brand p { font-size: 13px; color: var(--text-mid); margin-top: 12px; line-height: 1.6; }
+  .footer h4 { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+  .footer ul li { margin-bottom: 10px; }
+  .footer ul li a { font-size: 14px; color: var(--text-mid); }
+  .footer ul li a:hover { color: var(--blue); }
+  .footer-bottom { text-align: center; font-size: 13px; color: var(--text-light); margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .footer-social { display: flex; gap: 12px; margin-top: 16px; }
+  .footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-mid); transition: all .2s; }
+  .footer-social a:hover { background: var(--blue); color: white; border-color: var(--blue); }
+  .footer-social svg { width: 16px; height: 16px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .property-layout { grid-template-columns: 1fr; }
+    .booking-sidebar { position: static; }
+    .gallery { height: 360px; }
+  }
+  @media (max-width: 768px) {
+    .navbar { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .gallery { grid-template-columns: 1fr; height: auto; }
+    .gallery-main { height: 260px; border-radius: 10px; }
+    .gallery-grid { display: none; }
+    .property-layout { padding: 24px 16px 48px; gap: 24px; }
+    .prop-facts { gap: 16px; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+    .review-bars { grid-template-columns: 1fr; }
+    .exp-local-grid { grid-template-columns: 1fr 1fr; }
+    .similar-grid { grid-template-columns: 1fr 1fr; }
+    .date-row { grid-template-columns: 1fr 1fr; }
+    .footer { padding: 40px 16px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+  @media (max-width: 480px) {
+    .prop-header h1 { font-size: 22px; }
+    .amenities-grid { grid-template-columns: 1fr; }
+    .exp-local-grid { grid-template-columns: 1fr 1fr; }
+    .similar-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Mobile menu */
+  .mobile-menu { display: none; position: fixed; inset: 0; background: white; z-index: 200; flex-direction: column; padding: 24px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+  .mobile-menu a { font-size: 20px; font-weight: 600; color: var(--text); padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .close-menu { background: none; border: none; font-size: 28px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="nav-logo">TravelGo</span>
+    <button class="close-menu" onclick="toggleMenu()">✕</button>
+  </div>
+  <a href="../index.html">Explore</a>
+  <a href="../dashboard.html">Trips</a>
+  <a href="../dashboard.html">Rewards</a>
+  <a href="#">Support</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">TravelGo</a>
+  <ul class="nav-links">
+    <li><a href="../index.html" class="active">Explore</a></li>
+    <li><a href="../dashboard.html">Trips</a></li>
+    <li><a href="../dashboard.html">Rewards</a></li>
+    <li><a href="#">Support</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <a href="../dashboard.html">
+      <img src="https://i.pravatar.cc/40?img=47" alt="Priya Sharma" class="nav-avatar"/>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- GALLERY — fixed: all images reliable Unsplash URLs -->
+<div class="gallery">
+  <div class="gallery-main">
+    <img
+      src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=900&q=80&auto=format&fit=crop"
+      alt="Villa Celeste — Amalfi Coast view"
+      loading="eager"
+    />
+    <button class="fav-btn" onclick="toggleFav(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-cell" style="border-radius:0 10px 0 0">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=80&auto=format&fit=crop" alt="Pool view" loading="lazy"/>
+    </div>
+    <div class="gallery-cell">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80&auto=format&fit=crop" alt="Dining" loading="lazy"/>
+    </div>
+    <div class="gallery-cell">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80&auto=format&fit=crop" alt="Bedroom" loading="lazy"/>
+    </div>
+    <div class="gallery-more">
+      <img src="https://images.unsplash.com/photo-1475688621402-4257c812d6db?w=400&q=80&auto=format&fit=crop" alt="Garden" loading="lazy"/>
+      <div class="gallery-more-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+        View all 24 photos
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="property-layout">
+  <div class="property-main">
+
+    <!-- Title -->
+    <div class="prop-header">
+      <div>
+        <h1>Villa Celeste Luxury Estate</h1>
+        <div class="prop-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Positano, Amalfi Coast, Italy
+          <span class="rating-badge" style="margin-left:10px"><span class="stars">★</span> 4.9 <span style="font-weight:400;color:var(--text-light)">(128 Reviews)</span></span>
+        </div>
+      </div>
+      <button class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
+
+    <!-- Facts -->
+    <div class="prop-facts">
+      <div class="fact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <div><strong>6 Bedrooms</strong><span>Sleeps 12</span></div>
+      </div>
+      <div class="fact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M9 6l6 6-6 6"/></svg>
+        <div><strong>8 Bathrooms</strong><span>En-suite</span></div>
+      </div>
+      <div class="fact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        <div><strong>450m²</strong><span>Living Space</span></div>
+      </div>
+      <div class="fact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="10"/></svg>
+        <div><strong>Infinity Pool</strong><span>Heated</span></div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="prop-section prop-desc">
+      <p>Suspended between the sea and the sky, Villa Celeste is a masterpiece of Mediterranean architecture. Located in the most exclusive part of Positano, this historic estate has been meticulously restored to offer an unparalleled luxury experience. Every corner of the villa is designed to maximise the breathtaking panoramas of the Amalfi Coast, featuring expansive terraces, lush lemon groves, and a spectacular infinity pool that seems to spill into the cobalt horizon.</p>
+    </div>
+
+    <!-- Amenities -->
+    <div class="prop-section">
+      <h2>Exclusive Amenities</h2>
+      <div class="amenities-grid">
+        <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg> High-speed Wi-Fi</div>
+        <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Private Chef Service</div>
+        <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 10 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg> Full Air Conditioning</div>
+        <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="1" y="3" width="15" height="13"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Private Garage</div>
+        <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg> Gym & Wellness Area</div>
+        <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M8 6l4-4 4 4"/><path d="M12 2v10.3"/><path d="M4.93 10.93a8 8 0 1 0 11.31-.01"/></svg> Private Wine Cellar</div>
+      </div>
+      <button class="btn btn-outline" style="margin-top:16px">Show all 40 amenities</button>
+    </div>
+
+    <!-- Itinerary -->
+    <div class="prop-section">
+      <h2>Your 3-Day Amalfi Dream</h2>
+      <div class="itinerary">
+        <div class="itin-item"><div class="itin-num">1</div><div><h4>Arrival &amp; Coastal Sunset</h4><p>Private transfer from Naples, welcome cocktail on the terrace, and a curated four-course dinner by your private chef.</p></div></div>
+        <div class="itin-item"><div class="itin-num">2</div><div><h4>Private Boat to Capri</h4><p>Charter a classic Riva boat for a day tour of Capri and the Faraglioni rocks, with swim stops at secret coves only accessible by sea.</p></div></div>
+        <div class="itin-item"><div class="itin-num">3</div><div><h4>Path of the Gods Hike</h4><p>A guided trek along the world-renowned Sentiero degli Dei, followed by a wine tasting at a local cliffside vineyard in Praiano.</p></div></div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="prop-section">
+      <h2>Where You'll Be</h2>
+      <div class="map-placeholder">
+        <div class="map-pin"><svg viewBox="0 0 24 24" fill="var(--blue)" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="white"/></svg> Villa Celeste</div>
+        <div class="map-tags">
+          <span class="map-tag">🏖 Positano Beach (5 min walk)</span>
+          <span class="map-tag">🚢 Harbour (2 min walk)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="prop-section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <h2 style="margin:0">Guest Reviews</h2>
+        <a href="#" class="btn btn-ghost" style="font-size:13px">Write a review</a>
+      </div>
+      <div class="review-bars">
+        <div class="rev-bar-row"><span>Cleanliness</span><div class="bar"><div class="bar-fill" style="width:100%"></div></div><span>5.0</span></div>
+        <div class="rev-bar-row"><span>Communication</span><div class="bar"><div class="bar-fill" style="width:90%"></div></div><span>4.8</span></div>
+        <div class="rev-bar-row"><span>Location</span><div class="bar"><div class="bar-fill" style="width:86%"></div></div><span>4.3</span></div>
+        <div class="rev-bar-row"><span>Value</span><div class="bar"><div class="bar-fill" style="width:94%"></div></div><span>4.7</span></div>
+      </div>
+      <div class="review-card card">
+        <div class="review-top">
+          <img src="https://i.pravatar.cc/40?img=47" alt="Priya S." loading="lazy"/>
+          <div><strong>Priya S.</strong><span>September 2024 · Luxury Traveller</span></div>
+          <div class="stars" style="margin-left:auto">★★★★★</div>
+        </div>
+        <p>"Absolutely magical. The photos don't do justice to the views from the master bedroom. The private chef was the highlight — the seafood pasta was the best I've ever had. Truly a 5-star experience in every sense."</p>
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=160&q=80&auto=format&fit=crop" alt="Review photo" class="review-img" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- Experiences -->
+    <div class="prop-section">
+      <h2>Experience Positano</h2>
+      <div class="exp-local-grid">
+        <div class="card"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&q=80&auto=format&fit=crop" alt="Boat Charters" loading="lazy"/><div class="exp-local-info"><strong>Boat Charters</strong><p>From $850/day</p></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&q=80&auto=format&fit=crop" alt="Cooking Class" loading="lazy"/><div class="exp-local-info"><strong>Private Cooking Class</strong><p>From $300/person</p></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&q=80&auto=format&fit=crop" alt="Vineyard Tours" loading="lazy"/><div class="exp-local-info"><strong>Vineyard Tours</strong><p>From $110/person</p></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=300&q=80&auto=format&fit=crop" alt="Grotto" loading="lazy"/><div class="exp-local-info"><strong>Grotto Exploration</strong><p>From $120/person</p></div></div>
+      </div>
+    </div>
+
+    <!-- Similar -->
+    <div class="prop-section">
+      <h2>You might also like</h2>
+      <div class="similar-grid">
+        <div class="similar-card card" onclick="location.reload()"><img src="https://images.unsplash.com/photo-1491555103944-7c647fd857e6?w=240&q=80&auto=format&fit=crop" alt="Villa d'Este" loading="lazy"/><div class="similar-info"><span style="font-size:11px;color:var(--text-light)">Lake Como, Italy</span><strong style="display:block;margin:4px 0">Villa d'Este Retreat</strong><p style="color:var(--blue);font-weight:700;font-size:14px">$1,850 <span style="color:var(--text-light);font-size:12px;font-weight:400">/night</span></p></div></div>
+        <div class="similar-card card" onclick="location.reload()"><img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=240&q=80&auto=format&fit=crop" alt="Masseria" loading="lazy"/><div class="similar-info"><span style="font-size:11px;color:var(--text-light)">Puglia, Italy</span><strong style="display:block;margin:4px 0">Masseria Olive Grove</strong><p style="color:var(--blue);font-weight:700;font-size:14px">$950 <span style="color:var(--text-light);font-size:12px;font-weight:400">/night</span></p></div></div>
+        <div class="similar-card card" onclick="location.reload()"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=240&q=80&auto=format&fit=crop" alt="Oia Heights" loading="lazy"/><div class="similar-info"><span style="font-size:11px;color:var(--text-light)">Santorini, Greece</span><strong style="display:block;margin:4px 0">Oia Heights Villa</strong><p style="color:var(--blue);font-weight:700;font-size:14px">$1,400 <span style="color:var(--text-light);font-size:12px;font-weight:400">/night</span></p></div></div>
+        <div class="similar-card card" onclick="location.reload()"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=240&q=80&auto=format&fit=crop" alt="Summit Lodge" loading="lazy"/><div class="similar-info"><span style="font-size:11px;color:var(--text-light)">Zermatt, Switzerland</span><strong style="display:block;margin:4px 0">The Summit Lodge</strong><p style="color:var(--blue);font-weight:700;font-size:14px">$2,100 <span style="color:var(--text-light);font-size:12px;font-weight:400">/night</span></p></div></div>
+      </div>
+    </div>
+
+  </div><!-- /property-main -->
+
+  <!-- BOOKING SIDEBAR -->
+  <aside class="booking-sidebar">
+    <div class="booking-box card">
+      <div class="price-header">
+        <span class="price-main">$2,450 <em>/night</em></span>
+        <div class="rating-badge"><span class="stars">★</span> 4.9</div>
+      </div>
+      <div class="date-row">
+        <div class="date-field"><label>CHECK-IN</label><input type="date" value="2024-10-12" class="form-input"/></div>
+        <div class="date-field"><label>CHECK-OUT</label><input type="date" value="2024-10-17" class="form-input"/></div>
+      </div>
+      <div style="margin-top:12px">
+        <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--text-mid);text-transform:uppercase;margin-bottom:6px">GUESTS</label>
+        <select class="form-input"><option>2 Guests</option><option>3 Guests</option><option selected>4 Guests</option><option>6 Guests</option><option>8+ Guests</option></select>
+      </div>
+      <a href="booking.html" class="btn btn-primary btn-lg btn-full" style="margin-top:16px">Reserve Now</a>
+      <p class="no-charge">You won't be charged yet</p>
+      <div class="price-breakdown">
+        <div class="pb-row"><span><a href="#">$2,450 x 5 nights</a></span><span>$12,250</span></div>
+        <div class="pb-row"><span><a href="#">Cleaning fee</a></span><span>$350</span></div>
+        <div class="pb-row"><span><a href="#">Service fee</a></span><span>$840</span></div>
+        <div class="pb-row pb-total"><strong>Total</strong><strong style="color:var(--blue)">$13,440</strong></div>
+      </div>
+      <div class="luxury-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Luxury Protection Guarantee Included
+      </div>
+    </div>
+    <!-- Weather -->
+    <div class="card" style="padding:20px;margin-top:16px">
+      <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text-mid)">Positano Forecast</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:28px">☀️</span>
+          <div><strong style="font-size:22px">24°C</strong><br><span style="font-size:12px;color:var(--text-light)">Sunny &amp; Calm</span></div>
+        </div>
+        <div style="text-align:right;font-size:12px;color:var(--text-mid)">
+          <div>Tue <strong>25°C</strong></div>
+          <div>Wed <strong>23°C</strong></div>
+          <div>Thu <strong>22°C</strong></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">TravelGo</div>
+      <p>Redefining luxury travel since 2012.</p>
+      <div class="footer-social">
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <div><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Experiences</a></li><li><a href="#">Careers</a></li></ul></div>
+    <div><h4>Destinations</h4><ul><li><a href="#">Italy</a></li><li><a href="#">France</a></li><li><a href="#">Greece</a></li></ul></div>
+    <div><h4>Newsletter</h4><div style="display:flex;gap:8px;margin-top:4px"><input type="email" placeholder="Email address" class="form-input" style="flex:1"/><button class="btn btn-primary" style="padding:10px 14px;flex-shrink:0">→</button></div></div>
+  </div>
+  <div class="footer-bottom">© 2024 TravelGo Premium. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+function toggleFav(btn) {
+  const svg = btn.querySelector('svg');
+  if (svg.getAttribute('fill') === 'none') { svg.setAttribute('fill','#EF4444'); svg.setAttribute('stroke','#EF4444'); btn.style.background='#FEE2E2'; }
+  else { svg.setAttribute('fill','none'); svg.setAttribute('stroke','currentColor'); btn.style.background='white'; }
+}
+</script>
+</body>
+</html>

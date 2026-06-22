@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — TravelGo</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="dash-body">
+
+<!-- ── Top Bar ─────────────────────────────────────────── -->
+<header class="dash-header">
+  <a href="index.html" class="nav-logo">TravelGo</a>
+  <div class="nav-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="1.8" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" placeholder="Search destinations, trips, or rewards..." />
+  </div>
+  <div class="nav-right">
+    <button class="nav-icon" style="position:relative">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="notif-dot"></span>
+    </button>
+    <div class="dash-user">
+      <img src="https://i.pravatar.cc/40?img=47" alt="Alex" class="nav-avatar" />
+      <span>Priya Sharma</span>
+    </div>
+  </div>
+</header>
+
+<div class="dash-layout">
+
+  <!-- ── Sidebar ────────────────────────────────────────── -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-profile">
+      <img src="https://i.pravatar.cc/48?img=47" alt="Alex" />
+      <div>
+        <strong>Priya Sharma</strong>
+        <span class="badge badge-gold">Gold Member</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-link active" data-section="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-link" data-section="trips">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.31h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        My Trips
+      </a>
+      <a href="#" class="sidebar-link" data-section="saved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Saved
+      </a>
+      <a href="#" class="sidebar-link" data-section="rewards">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        Rewards
+      </a>
+      <a href="#" class="sidebar-link" data-section="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <a href="pages/booking.html" class="btn btn-primary btn-full" style="margin-top:auto;padding:14px">Book New Trip</a>
+  </aside>
+
+  <!-- ── Main Content ────────────────────────────────────── -->
+  <main class="dash-main">
+
+    <!-- Welcome -->
+    <div class="dash-welcome">
+      <h1>Welcome back, Priya</h1>
+      <p>You have 2 upcoming trips and <strong>12,450</strong> points to spend.</p>
+    </div>
+
+    <!-- Hero Cards Row -->
+    <div class="dash-cards-row">
+
+      <!-- Next Trip Card -->
+      <div class="trip-hero-card">
+        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&auto=format&fit=crop" alt="Santorini" class="trip-hero-img" />
+        <div class="trip-hero-overlay"></div>
+        <span class="next-trip-badge">Next Trip</span>
+        <div class="days-left"><span class="days-num">04</span><span>DAYS LEFT</span></div>
+        <div class="trip-hero-info">
+          <h2>Escape to Santorini</h2>
+          <p>
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.8" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Oct 24 – Oct 31 · 2 Guests
+          </p>
+          <div class="trip-hero-btns">
+            <button class="btn trip-btn-boarding" onclick="window.location='pages/booking.html'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" width="16" height="16"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Boarding Pass
+            </button>
+            <button class="btn trip-btn-details" onclick="window.location='pages/property.html'">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rewards Card -->
+      <div class="rewards-card">
+        <div class="rewards-top">
+          <span style="font-size:13px;color:rgba(255,255,255,.7)">Travel Rewards</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.8" width="20" height="20"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <div class="rewards-title">Gold Member</div>
+        <div class="points-display">
+          <strong>12,450</strong>
+          <span>POINTS EARNED</span>
+        </div>
+        <div class="progress-section">
+          <div class="prog-label"><span>Progress to Platinum</span><span>75%</span></div>
+          <div class="prog-bar"><div class="prog-fill"></div></div>
+        </div>
+        <button class="btn btn-full" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.2);margin-top:20px">View Benefits</button>
+      </div>
+
+    </div><!-- /dash-cards-row -->
+
+    <!-- Activity + Quick Actions -->
+    <div class="dash-bottom-row">
+      <div class="activity-card card">
+        <div class="activity-header">
+          <h3>Activity Overview</h3>
+          <div class="toggle-group">
+            <button class="toggle active" onclick="setToggle(this,'Year')">Year</button>
+            <button class="toggle" onclick="setToggle(this,'Month')">Month</button>
+          </div>
+        </div>
+        <!-- Simple bar chart -->
+        <div class="activity-chart">
+          <div class="chart-bars">
+            <div class="bar-col"><div class="bar-val" style="height:60%"></div><span>J</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:45%"></div><span>F</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:80%"></div><span>M</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:35%"></div><span>A</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:90%"></div><span>M</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:55%"></div><span>J</span></div>
+            <div class="bar-col"><div class="bar-val bar-active" style="height:75%"></div><span>J</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:40%"></div><span>A</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:65%"></div><span>S</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:100%"></div><span>O</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:50%"></div><span>N</span></div>
+            <div class="bar-col"><div class="bar-val" style="height:30%"></div><span>D</span></div>
+          </div>
+        </div>
+        <div class="activity-stats">
+          <div class="act-stat"><strong>7</strong><span>Trips taken</span></div>
+          <div class="act-stat"><strong>$24.8k</strong><span>Total spent</span></div>
+          <div class="act-stat"><strong>12</strong><span>Countries visited</span></div>
+        </div>
+      </div>
+
+      <div class="quick-actions-card card">
+        <h3>Quick Actions</h3>
+        <div class="qa-grid">
+          <button class="qa-btn" onclick="window.location='pages/booking.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" width="22" height="22"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span>Payments</span>
+          </button>
+          <button class="qa-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" width="22" height="22"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Support</span>
+          </button>
+          <button class="qa-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" width="22" height="22"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Saved</span>
+          </button>
+          <button class="qa-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" width="22" height="22"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Refer</span>
+          </button>
+        </div>
+
+        <div class="upcoming-trips">
+          <h4>Upcoming Trips</h4>
+          <div class="upcoming-item">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=60&auto=format&fit=crop" alt="Santorini" />
+            <div>
+              <strong>Santorini, Greece</strong>
+              <span>Oct 24 – Oct 31</span>
+            </div>
+            <span class="badge badge-blue">4 days</span>
+          </div>
+          <div class="upcoming-item">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=60&auto=format&fit=crop" alt="Zermatt" />
+            <div>
+              <strong>Zermatt, Switzerland</strong>
+              <span>Dec 18 – Dec 26</span>
+            </div>
+            <span class="badge badge-gold">58 days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Chat Bubble -->
+<button class="chat-bubble" onclick="this.style.background='var(--blue-dark)'">
+  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="22" height="22"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
+<style>
+@media (max-width: 1024px) {
+  .dash-cards-row { grid-template-columns: 1fr !important; }
+  .dash-bottom-row { grid-template-columns: 1fr !important; }
+  .trip-hero-card { height: 340px !important; }
+  .rewards-card { height: auto !important; min-height: 300px !important; }
+}
+@media (max-width: 768px) {
+  .dash-header { padding: 0 16px !important; }
+  .dash-header .nav-search { display: none !important; }
+  .dash-sidebar { display: none !important; }
+  .dash-layout { height: auto !important; overflow: visible !important; }
+  .dash-main { padding: 20px 16px !important; }
+  .dash-welcome h1 { font-size: 24px !important; }
+  .days-num { font-size: 32px !important; }
+}
+@media (max-width: 480px) {
+  .qa-grid { grid-template-columns: repeat(4,1fr) !important; }
+  .qa-btn span { font-size: 10px !important; }
+}
+</style>

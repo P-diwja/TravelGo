@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed — TravelGo</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .confirm-wrap { max-width: 600px; margin: 80px auto; padding: 40px; text-align: center; }
+    .confirm-icon { width: 80px; height: 80px; background: #D1FAE5; border-radius: 50%;
+      display: grid; place-items: center; margin: 0 auto 24px; }
+    .confirm-icon svg { width: 40px; height: 40px; stroke: #065F46; }
+    .confirm-wrap h1 { font-family: var(--serif); font-size: 32px; margin-bottom: 12px; }
+    .confirm-wrap p { font-size: 15px; color: var(--text-mid); margin-bottom: 32px; }
+    .booking-ref { background: var(--blue-light); padding: 16px 24px; border-radius: var(--radius);
+      margin-bottom: 32px; }
+    .booking-ref span { font-size: 12px; color: var(--text-mid); display: block; }
+    .booking-ref strong { font-size: 24px; color: var(--blue); letter-spacing: 2px; }
+    .confirm-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">TravelGo</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Explore</a></li>
+    <li><a href="../dashboard.html" class="active">Trips</a></li>
+  </ul>
+  <div class="nav-right">
+    <img src="https://i.pravatar.cc/40?img=47" alt="Profile" class="nav-avatar" />
+  </div>
+</nav>
+
+<div class="confirm-wrap">
+  <div class="confirm-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h1>Booking Confirmed!</h1>
+  <p>Your luxury stay at <strong>Azure Horizon Villa</strong> in Oia, Santorini has been successfully booked. A confirmation email has been sent to alex.morgan@example.com.</p>
+  <div class="booking-ref">
+    <span>Your Booking Reference</span>
+    <strong>TG-2024-98742</strong>
+  </div>
+  <div class="confirm-actions">
+    <a href="../dashboard.html" class="btn btn-primary btn-lg">View My Trips</a>
+    <a href="../index.html" class="btn btn-outline btn-lg">Explore More</a>
+  </div>
+</div>
+</body>
+</html>

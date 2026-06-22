@@ -1,0 +1,164 @@
+/* ============================================================
+   TravelGo — Property Page Styles
+   ============================================================ */
+
+/* ── Gallery ──────────────────────────────────────────── */
+.gallery { display: grid; grid-template-columns: 1fr 1fr; height: 480px; gap: 8px; padding: 8px; }
+.gallery-main { position: relative; border-radius: var(--radius) 0 0 var(--radius); overflow: hidden; }
+.gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; }
+.gallery-grid img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-grid img:last-child { border-radius: 0 var(--radius) 0 0; }
+.gallery-more { position: relative; overflow: hidden; border-radius: 0 0 var(--radius) 0; }
+.gallery-more img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-more-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,.5);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  color: white; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.fav-btn {
+  position: absolute; top: 16px; right: 16px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: white; border: none; display: grid; place-items: center;
+  cursor: pointer; box-shadow: var(--shadow); transition: all .2s;
+}
+.fav-btn:hover { background: var(--blue); }
+.fav-btn:hover svg { stroke: white; }
+
+/* ── Layout ───────────────────────────────────────────── */
+.property-layout {
+  display: grid; grid-template-columns: 1fr 360px;
+  gap: 48px; max-width: 1200px; margin: 0 auto;
+  padding: 40px 40px 80px;
+}
+.property-main { min-width: 0; }
+
+/* ── Header ───────────────────────────────────────────── */
+.prop-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.prop-header h1 { font-family: var(--serif); font-size: 32px; font-weight: 700; letter-spacing: -.5px; }
+.prop-meta { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-mid); margin-top: 6px; }
+.prop-meta svg { stroke: var(--text-mid); }
+
+/* ── Facts ────────────────────────────────────────────── */
+.prop-facts {
+  display: flex; gap: 32px; padding: 20px 0; border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); margin-bottom: 24px;
+}
+.fact { display: flex; align-items: center; gap: 10px; }
+.fact svg { stroke: var(--text-mid); flex-shrink: 0; }
+.fact strong { display: block; font-size: 14px; font-weight: 600; }
+.fact span   { font-size: 12px; color: var(--text-light); }
+
+/* ── Description ──────────────────────────────────────── */
+.prop-desc { margin-bottom: 32px; }
+.prop-desc p {
+  font-size: 15px; color: var(--text-mid); line-height: 1.75;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.read-more {
+  background: none; border: none; color: var(--blue); font-size: 14px;
+  font-weight: 600; cursor: pointer; padding: 8px 0; display: block; margin-top: 8px;
+}
+
+/* ── Sections ─────────────────────────────────────────── */
+.prop-section { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+.prop-section:last-child { border-bottom: none; }
+.prop-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+
+/* ── Amenities ────────────────────────────────────────── */
+.amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.amenity {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--text-mid);
+}
+.amenity svg { stroke: var(--text-mid); flex-shrink: 0; }
+
+/* ── Itinerary ────────────────────────────────────────── */
+.itinerary { display: flex; flex-direction: column; gap: 20px; }
+.itin-item { display: flex; gap: 16px; }
+.itin-num {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--blue);
+  color: white; font-size: 13px; font-weight: 700; display: grid; place-items: center; flex-shrink: 0;
+}
+.itin-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.itin-item p  { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+/* ── Map ──────────────────────────────────────────────── */
+.map-placeholder {
+  height: 280px; background: linear-gradient(135deg, #d4c5a9, #c9b89a);
+  border-radius: var(--radius); position: relative; display: flex;
+  align-items: center; justify-content: center; overflow: hidden;
+}
+.map-pin {
+  display: flex; align-items: center; gap: 6px; background: white;
+  padding: 8px 14px; border-radius: 24px; box-shadow: var(--shadow-lg); font-size: 13px; font-weight: 600;
+}
+.map-tags { position: absolute; bottom: 16px; left: 16px; display: flex; flex-direction: column; gap: 8px; }
+.map-tag {
+  background: white; padding: 6px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 500; box-shadow: var(--shadow);
+}
+
+/* ── Reviews ──────────────────────────────────────────── */
+.review-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; }
+.rev-bar-row { display: flex; align-items: center; gap: 12px; }
+.rev-bar-row > span:first-child { font-size: 13px; color: var(--text-mid); min-width: 110px; }
+.rev-bar-row > span:last-child  { font-size: 13px; font-weight: 600; min-width: 28px; }
+.bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--blue); border-radius: 2px; }
+.review-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-top img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.review-top strong { display: block; font-size: 14px; }
+.review-top span { font-size: 12px; color: var(--text-light); }
+.review-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 14px; font-style: italic; }
+.review-img { width: 100px; height: 80px; object-fit: cover; border-radius: 8px; }
+
+/* ── Experiences local ────────────────────────────────── */
+.exp-local-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.exp-local img { height: 130px; object-fit: cover; }
+.exp-local strong { font-size: 13px; font-weight: 600; }
+.exp-local p { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+/* ── Similar ──────────────────────────────────────────── */
+.similar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.similar-card { cursor: pointer; }
+.similar-card img { height: 130px; object-fit: cover; }
+
+/* ── Booking Sidebar ──────────────────────────────────── */
+.booking-sidebar { position: sticky; top: 80px; align-self: start; }
+.booking-box { padding: 24px; }
+.price-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.price-main { font-size: 26px; font-weight: 800; color: var(--text); }
+.price-main em { font-size: 16px; font-weight: 400; color: var(--text-light); font-style: normal; }
+.date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.date-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  color: var(--text-mid); text-transform: uppercase; margin-bottom: 6px; }
+.no-charge { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 10px; }
+.price-breakdown { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; }
+.pb-row { display: flex; justify-content: space-between; font-size: 14px;
+  color: var(--text-mid); margin-bottom: 10px; }
+.pb-row a { color: var(--text-mid); text-decoration: underline; }
+.pb-total { font-weight: 700; color: var(--text); border-top: 1px solid var(--border);
+  padding-top: 12px; margin-top: 4px; }
+.luxury-badge {
+  display: flex; align-items: center; gap: 8px; background: var(--blue-light);
+  padding: 10px 14px; border-radius: var(--radius-sm); margin-top: 14px;
+  font-size: 12px; color: var(--blue); font-weight: 500;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .property-layout { grid-template-columns: 1fr; }
+  .booking-sidebar { position: static; }
+  .gallery { height: 340px; }
+}
+@media (max-width: 700px) {
+  .gallery { grid-template-columns: 1fr; height: auto; }
+  .gallery-grid { display: none; }
+  .gallery-main { height: 300px; border-radius: var(--radius); }
+  .prop-facts { flex-wrap: wrap; gap: 16px; }
+  .amenities-grid { grid-template-columns: 1fr 1fr; }
+  .review-bars { grid-template-columns: 1fr; }
+  .exp-local-grid { grid-template-columns: 1fr 1fr; }
+  .similar-grid { grid-template-columns: 1fr 1fr; }
+}
